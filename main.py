@@ -1,14 +1,9 @@
+import sys
 
 
-
-def print_hi(name):
-
-    print(f'Hi, {name}')
-# Press Ctrl+F8 to toggle the breakpoint.
-# Press the green button in the gutter to run the script.
+def main(argv):
+    pass
 
 
-mif __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/m
+if __name__ == '__main__':
+    main(sys.argv)

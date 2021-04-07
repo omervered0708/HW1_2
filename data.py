@@ -30,7 +30,7 @@ def init_dict(dict, data):
         dict[key] = []
 
 
-def copy_to_dict(data,i,dict):
+def copy_to_dict(data, i, dict):
     for key, dict_value in data.items():
         dict[key].append(dict_value[i])
 
