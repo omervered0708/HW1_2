@@ -21,7 +21,7 @@ def load_data(path, features):
 def filter_by_feature(data, feature, values):
     """
 
-    :param data: aa dictionary whose keys are features from the data set
+    :param data: a dictionary whose keys are features from the data set
     and values are lists with the values of the features
     :param feature: a name of a categorical feature
     :param values: a set of values
@@ -63,3 +63,16 @@ def copy_to_dict(data, i, dict):
         dict[key].append(dict_value[i])
 
 
+def print_details(data, features, statistic_functions):
+    """
+    print statistical indices on 'data' according to the features in 'features' using 'statistic_functions'
+    :param data: dictionary whose keys are features of the data set and values are list of records
+    :param features: list of features of the data set
+    :param statistic_functions: list of statistic functions from statistics.py
+    :return: none
+    """
+    for feat in features:
+        # print the name of the feature
+        print(f"{feat}: ", end='')
+        # print results of the statistical functions applied on the 'data[feat]' records
+        print(*[[func(data[feat])] for func in statistic_functions], sep=', ')

@@ -60,6 +60,6 @@ def population_statistics(feature_description, data, treatment, target, threshol
     records = [[elem[1]] for elem in list(filter(lambda elem: is_above == (elem[0] > threshold), joint_list))]
 
     # print feature description and target feature
-    print(f"{feature_description}:\n{target.__name__}: ", end='')
+    print(f"{feature_description}:\n{target}: ", end='')
     # print statistics
     print(*[[func(records)] for func in statistic_functions], sep=', ', end='\n')
