@@ -62,4 +62,11 @@ def population_statistics(feature_description, data, treatment, target, threshol
     # print feature description and target feature
     print(f"{feature_description}:\n{target}: ", end='')
     # print statistics
-    print(*[[func(records)] for func in statistic_functions], sep=', ', end='\n')
+    for i, func in enumerate(statistic_functions):
+        print(func(records))
+        # prints a comma if needed
+        if i < (len(statistic_functions) - 1):
+            print(", ")
+    # new line
+    print("\n", end='')
+    # print(*[[func(records)] for func in statistic_functions], sep=', ', end='\n')

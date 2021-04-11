@@ -11,19 +11,21 @@ def main(argv):
     # Question 1
     print("Question 1:")
 
+    statistical_functions = [statistics.sum, statistics.mean, statistics.median]
     # print statistical indices for the summer
+    features = ["hum", "t1", "cnt"]
+    summer_records = data.filter_by_feature(q1_records, "season", {"1"})[0]
     print("Summer:")
-    data.print_details(data.filter_by_feature(q1_records, "season", ['1'])[0], ["hum", "t1", "cnt"],
-                       [statistics.sum, statistics.mean, statistics.median])
+    data.print_details(summer_records, features, statistical_functions)
 
     # print statistical indices for holiday
+    holiday_records = data.filter_by_feature(q1_records, "is_holiday", {"1"})[0]
     print("Holiday:")
-    data.print_details(data.filter_by_feature(q1_records, "is_holiday", ['1'])[0], ["hum", "t1", "cnt"],
-                       [statistics.sum, statistics.mean, statistics.median])
+    data.print_details(holiday_records, features, statistical_functions)
 
     # print statistical indices for the entire population
     print("All:")
-    data.print_details(q1_records, ["hum", "t1", "cnt"], [statistics.sum, statistics.mean, statistics.median])
+    data.print_details(q1_records, features,  statistical_functions)
 
     print("\n", end='')
 
@@ -32,27 +34,25 @@ def main(argv):
 
     # setup relevant records
     # filter data from seasons other than winter
-    q2_records = data.filter_by_feature(q1_records, "season", ['3'])[0]
+    q2_pre_records = data.filter_by_feature(q1_records, "season", {'3'})[0]
     # divide by 'is_holiday':
     # 'q2_records[0]' contains records of winter holidays
     # 'q2_records[1]' contains records of winter weekdays
-    q2_records = data.filter_by_feature(q2_records, "is_holiday", ['1'])
+    q2_records = data.filter_by_feature(q2_pre_records, "is_holiday", {'1'})
 
     # print population statistics for records with t1<=13.0
     # print population statistics for winter holiday records
-    statistics.population_statistics("Winter holiday records", q2_records[0], "t1", "cnt", 13.0, 0,
-                                     [statistics.mean, statistics.median])
+    threshold = 13.0
+    funcs = [statistics.mean, statistics.median]
+    statistics.population_statistics("Winter holiday records", q2_records[0], "t1", "cnt", threshold, False, funcs)
     # print population statistics for winter weekday records
-    statistics.population_statistics("Winter weekday records", q2_records[1], "t1", "cnt", 13.0, 0,
-                                     [statistics.mean, statistics.median])
+    statistics.population_statistics("Winter weekday records", q2_records[1], "t1", "cnt", threshold, False, funcs)
 
     # print population statistics for records with t1>13.0
     # print population statistics for winter holiday records
-    statistics.population_statistics("Winter holiday records", q2_records[0], "t1", "cnt", 13.0, 1,
-                                     [statistics.mean, statistics.median])
+    statistics.population_statistics("Winter holiday records", q2_records[0], "t1", "cnt", threshold, True, funcs)
     # print population statistics for winter weekday records
-    statistics.population_statistics("Winter weekday records", q2_records[1], "t1", "cnt", 13.0, 1,
-                                     [statistics.mean, statistics.median])
+    statistics.population_statistics("Winter weekday records", q2_records[1], "t1", "cnt", threshold, True, funcs)
 
 
 if __name__ == '__main__':

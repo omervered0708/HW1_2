@@ -71,13 +71,15 @@ def print_details(data, features, statistic_functions):
     :param statistic_functions: list of statistic functions from statistics.py
     :return: none
     """
-    for i, feat in enumerate(features):
+    for feat in features:
         # print the name of the feature
         print(f"{feat}: ", end='')
         # print results of the statistical functions applied on the 'data[feat]' records
-        for func in statistic_functions:
+        for i, func in enumerate(statistic_functions):
             print(func(data[feat]))
             # prints a comma if needed
-            if i< (len(features)-1):
+            if i < (len(statistic_functions)-1):
                 print(", ")
-            # print(*[[func(data[feat])] for func in statistic_functions], sep=', ')
+        # new line
+        print("\n", end='')
+        # print(*[[func(data[feat])] for func in statistic_functions], sep=', ')
