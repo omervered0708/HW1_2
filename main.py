@@ -14,12 +14,12 @@ def main(argv):
     statistical_functions = [statistics.sum, statistics.mean, statistics.median]
     # print statistical indices for the summer
     features = ["hum", "t1", "cnt"]
-    summer_records = data.filter_by_feature(q1_records, "season", {"1"})[0]
+    summer_records = data.filter_by_feature(q1_records, "season", {1})[0]
     print("Summer:")
     data.print_details(summer_records, features, statistical_functions)
 
     # print statistical indices for holiday
-    holiday_records = data.filter_by_feature(q1_records, "is_holiday", {"1"})[0]
+    holiday_records = data.filter_by_feature(q1_records, "is_holiday", {1})[0]
     print("Holiday:")
     data.print_details(holiday_records, features, statistical_functions)
 
@@ -34,11 +34,11 @@ def main(argv):
 
     # setup relevant records
     # filter data from seasons other than winter
-    q2_pre_records = data.filter_by_feature(q1_records, "season", {'3'})[0]
+    q2_pre_records = data.filter_by_feature(q1_records, "season", {3})[0]
     # divide by 'is_holiday':
     # 'q2_records[0]' contains records of winter holidays
     # 'q2_records[1]' contains records of winter weekdays
-    q2_records = data.filter_by_feature(q2_pre_records, "is_holiday", {'1'})
+    q2_records = data.filter_by_feature(q2_pre_records, "is_holiday", {1})
 
     # print population statistics for records with t1<=13.0
     # print population statistics for winter holiday records

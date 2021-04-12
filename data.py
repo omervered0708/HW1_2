@@ -76,10 +76,10 @@ def print_details(data, features, statistic_functions):
         print(f"{feat}: ", end='')
         # print results of the statistical functions applied on the 'data[feat]' records
         for i, func in enumerate(statistic_functions):
-            print(func(data[feat]))
+            print(func(data[feat]), end='')
             # prints a comma if needed
             if i < (len(statistic_functions)-1):
-                print(", ")
+                print(", ", end='')
         # new line
         print("\n", end='')
         # print(*[[func(data[feat])] for func in statistic_functions], sep=', ')
