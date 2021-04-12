@@ -57,17 +57,17 @@ def population_statistics(feature_description, data, treatment, target, threshol
     joint_list = zip(data[treatment], data[target])
     # filter elements which do not satisfy is_above threshold (by the 'treatment' value),
     # then reduce the list to only 'target' values
-    pre_records = list(filter(lambda elem: is_above == (elem[0] > threshold), joint_list))
-    records = [elem[1] for elem in pre_records]
+    records = [elem[1] for elem in list(filter(lambda elem: is_above == (elem[0] > threshold), joint_list))]
 
     # print feature description and target feature
     print(f"{feature_description}:\n{target}: ", end='')
     # print statistics
-    for i, func in enumerate(statistic_functions):
-        print(func(records), end='')
-        # prints a comma if needed
-        if i < (len(statistic_functions) - 1):
-            print(", ", end='')
+    print(*[func(records) for func in statistic_functions], sep=', ', end='\n')
+
+    # for i, func in enumerate(statistic_functions):
+    #    print(func(records), end='')
+    #    # prints a comma if needed
+    #    if i < (len(statistic_functions) - 1):
+    #        print(", ", end='')
     # new line
-    print("\n", end='')
-    # print(*[[func(records)] for func in statistic_functions], sep=', ', end='\n')
+    # print("\n", end='')

@@ -32,23 +32,28 @@ def main(argv):
     # Question 2
     print("Question 2:")
 
+    # reset data from file
+    q2_data = data.load_data(argv[1], argv[2])
     # setup relevant records
     # filter data from seasons other than winter
-    q2_pre_records = data.filter_by_feature(q1_records, "season", {3})[0]
+    q2_pre_records = data.filter_by_feature(q2_data, "season", {3})[0]
     # divide by 'is_holiday':
     # 'q2_records[0]' contains records of winter holidays
     # 'q2_records[1]' contains records of winter weekdays
     q2_records = data.filter_by_feature(q2_pre_records, "is_holiday", {1})
 
-    # print population statistics for records with t1<=13.0
-    # print population statistics for winter holiday records
     threshold = 13.0
     funcs = [statistics.mean, statistics.median]
+
+    # print population statistics for records with t1<=13.0
+    print("If t1<=13.0, then:", end='\n')
+    # print population statistics for winter holiday records
     statistics.population_statistics("Winter holiday records", q2_records[0], "t1", "cnt", threshold, False, funcs)
     # print population statistics for winter weekday records
     statistics.population_statistics("Winter weekday records", q2_records[1], "t1", "cnt", threshold, False, funcs)
 
     # print population statistics for records with t1>13.0
+    print("If t1>13.0, then:", end='\n')
     # print population statistics for winter holiday records
     statistics.population_statistics("Winter holiday records", q2_records[0], "t1", "cnt", threshold, True, funcs)
     # print population statistics for winter weekday records
