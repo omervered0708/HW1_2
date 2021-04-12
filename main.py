@@ -1,12 +1,14 @@
 import sys
 import data
 import statistics
+import copy
 
 
 def main(argv):
 
     # data setup
-    q1_records = data.load_data(argv[1], argv[2])
+    records = data.load_data(argv[1], argv[2])
+    q1_records = copy.deepcopy(records)
 
     # Question 1
     print("Question 1:")
@@ -33,10 +35,9 @@ def main(argv):
     print("Question 2:")
 
     # reset data from file
-    q2_data = data.load_data(argv[1], argv[2])
     # setup relevant records
     # filter data from seasons other than winter
-    q2_pre_records = data.filter_by_feature(q2_data, "season", {3})[0]
+    q2_pre_records = data.filter_by_feature(records, "season", {3})[0]
     # divide by 'is_holiday':
     # 'q2_records[0]' contains records of winter holidays
     # 'q2_records[1]' contains records of winter weekdays
