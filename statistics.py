@@ -57,7 +57,7 @@ def population_statistics(feature_description, data, treatment, target, threshol
     joint_list = zip(data[treatment], data[target])
     # filter elements which do not satisfy is_above threshold (by the 'treatment' value),
     # then reduce the list to only 'target' values
-    pre_records = [elem for elem in list(filter(lambda elem: is_above == (elem[0] > threshold), joint_list))]
+    pre_records = list(filter(lambda elem: is_above == (elem[0] > threshold), joint_list))
     records = [elem[1] for elem in pre_records]
 
     # print feature description and target feature
