@@ -35,7 +35,7 @@ def median(values):
         med /= 2
     else:
         med = values[ceil(n/2)-1]
-    return med
+    return float(med)
 
 
 def population_statistics(feature_description, data, treatment, target, threshold, is_above, statistic_functions):
